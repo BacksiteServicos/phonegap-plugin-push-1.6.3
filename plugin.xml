@@ -98,7 +98,7 @@
         <framework src="com.google.android.gms:play-services-gcm:+" />
        
         <framework src="com.google.firebase:firebase-messaging:+"/>
-        <dependency id="cordova-support-google-services" version="~1.2.0"/>
+        <!-- <dependency id="cordova-support-google-services" version="~1.2.0"/> -->
         <dependency id="phonegap-plugin-multidex" version="~1.0.0"/>
         <source-file src="src/android/com/adobe/phonegap/push/FCMService.java" target-dir="src/com/adobe/phonegap/push/"/>
 		<source-file src="src/android/com/adobe/phonegap/push/GCMIntentService.java" target-dir="src/com/adobe/phonegap/push/" />

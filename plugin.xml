@@ -30,7 +30,6 @@
 
 	<!-- android -->
 	<platform name="android">
-
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="PushNotification" >
 				<param name="android-package" value="com.adobe.phonegap.push.PushPlugin"/>
@@ -53,6 +52,12 @@
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:name="com.adobe.phonegap.push.PushHandlerActivity" android:exported="true"/>
+             <activity android:exported="true" android:name="com.adobe.phonegap.push.BackgroundHandlerActivity" android:permission="${applicationId}.permission.BackgroundHandlerActivity">
+                <intent-filter>
+                    <action android:name="com.adobe.phonegap.push.background.MESSAGING_EVENT" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                </intent-filter>
+            </activity>
             <receiver android:name="com.adobe.phonegap.push.BackgroundActionButtonHandler"/>
 
             <receiver
@@ -64,6 +69,11 @@
                     <category android:name="${applicationId}" />
                 </intent-filter>
             </receiver>
+            <service android:name="com.adobe.phonegap.push.FCMService">
+                <intent-filter>
+                  <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                </intent-filter>
+            </service>
             <service
                 android:name="com.adobe.phonegap.push.GCMIntentService"
                 android:exported="false" >
@@ -83,11 +93,16 @@
                 android:exported="false">
             </service>
 		</config-file>
-
+        <preference name="ANDROID_SUPPORT_V13_VERSION" default="27.+"/>
+         <preference name="FCM_VERSION" default="17.0.+"/>
         <framework src="push.gradle" custom="true" type="gradleReference" />
-        <framework src="com.android.support:support-v13:23+" />
+        <framework src="com.android.support:support-v13:$ANDROID_SUPPORT_V13_VERSION"/>
         <framework src="com.google.android.gms:play-services-gcm:+" />
-
+       
+        <framework src="com.google.firebase:firebase-messaging:$FCM_VERSION"/>
+        <dependency id="cordova-support-google-services" version="~1.2.0"/>
+        <dependency id="phonegap-plugin-multidex" version="~1.0.0"/>
+        <source-file src="src/android/com/adobe/phonegap/push/FCMService.java" target-dir="src/com/adobe/phonegap/push/"/>
 		<source-file src="src/android/com/adobe/phonegap/push/GCMIntentService.java" target-dir="src/com/adobe/phonegap/push/" />
 		<source-file src="src/android/com/adobe/phonegap/push/PushConstants.java" target-dir="src/com/adobe/phonegap/push/" />
 		<source-file src="src/android/com/adobe/phonegap/push/PushHandlerActivity.java" target-dir="src/com/adobe/phonegap/push/" />

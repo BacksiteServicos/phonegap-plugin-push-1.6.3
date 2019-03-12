@@ -93,12 +93,11 @@
                 android:exported="false">
             </service>
 		</config-file>
-        <preference name="FCM_VERSION" default="17.0.+"/>
         <framework src="push.gradle" custom="true" type="gradleReference" />
         <framework src="com.android.support:support-v13:+"/>
         <framework src="com.google.android.gms:play-services-gcm:+" />
        
-        <framework src="com.google.firebase:firebase-messaging:$FCM_VERSION"/>
+        <framework src="com.google.firebase:firebase-messaging:+"/>
         <dependency id="cordova-support-google-services" version="~1.2.0"/>
         <dependency id="phonegap-plugin-multidex" version="~1.0.0"/>
         <source-file src="src/android/com/adobe/phonegap/push/FCMService.java" target-dir="src/com/adobe/phonegap/push/"/>

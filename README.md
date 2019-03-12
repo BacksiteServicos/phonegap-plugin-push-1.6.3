@@ -1,1 +1,3 @@
-# phonegap-plugin-push-1.6.3
+# Sobre
+
+Este plugin é uma cópia do plugin push do usuario "macdonst". (v1.6.3)
